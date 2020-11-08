@@ -54,6 +54,19 @@
                                              </tr>  
                                            </thead>  
                                            <tbody>  
+                                            <tr>  
+                                                <td>-</td>
+                                                <td>
+                                                    Seluruh Lembaga
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('list_all') }}">
+                                                        <button class="btn btn-primary">
+                                                        Lihat
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                             </tr> 
                                              @foreach($all as $row)
                                              @php
                                                         if($row->induk_lembaga!=10 && $row->induk_lembaga!=50){

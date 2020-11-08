@@ -91,6 +91,7 @@ class DataController extends Controller
         }
         DB::table('unit_lembaga')->insert([
             'induk_lembaga' => $induk_lembaga,
+            'hari_efektif' => $request->hari_efektif,
             'nama_lembaga' => $request->nama_lembaga
         ]);
         return redirect('/data_santri/list_lembaga');
@@ -188,6 +189,15 @@ class DataController extends Controller
         return view('list',$data);
     }
 
+    public function list_all(){
+        // $all_data=DB::table('data_santri')->get();        
+        $all_data =  DB::table('data_santri')->get();
+        $data['all'] = $all_data;
+        $currentLink = request()->path(); // Getting current URI like 'category/books/'
+        session(['links' => $currentLink]); // Saving links array to the session
+        return view('list_all',$data);
+    }
+
     public function list_absen($id_lembaga){
         // $all_data=DB::table('data_santri')->get();        
         if($id_lembaga>=50){
@@ -237,8 +247,17 @@ class DataController extends Controller
         ->orderBy('id_lembaga', 'DESC')
         ->orderBy('kategori', 'DESC')
         ->get();
-        // print_r($data['all']);
         return view('master_biaya',$data);
+    }
+
+    public function rekapitulasi_biaya(){
+        $data['all']=DB::table('biaya')
+        ->join('unit_lembaga','unit_lembaga.induk_lembaga','=','biaya.id_lembaga')
+        ->whereNotIn('biaya.id_lembaga',[10,50])
+        ->orderBy('id_lembaga', 'DESC')
+        ->orderBy('kategori', 'DESC')
+        ->get();
+        return view('rekapitulasi_biaya',$data);
     }
 
      public function mass_updatejenis(){
@@ -522,6 +541,24 @@ class DataController extends Controller
     return redirect('/data_santri/master_biaya');
     }
 
+    public function update_pembayaran(Request $request){
+    $id=$request->id;
+    if($id>50){
+        $tipe='madrasah';
+    }
+    else{
+        $tipe='pondok';
+
+    }
+    DB::table($tipe)->where('id',$id)->update([
+            'paket0' => $request->paket0,
+            'paket1' => $request->paket1,
+            'paket2' => $request->paket2,
+            'paket3' => $request->paket3,
+        ]);
+    return redirect('/data_santri/list_group');
+    }
+
     public function update_lembaga(Request $request){
     $induk_lembaga=$request->induk_lembaga;
     DB::table('unit_lembaga')->where('induk_lembaga',$induk_lembaga)->update([
@@ -541,7 +578,14 @@ class DataController extends Controller
 
     public function export_excel($id_lembaga)
     {
-        $nama_file = 'data_santri_'.date('Y-m-d_H-i-s').'.xlsx';
+        if($id_lembaga==0){
+            $nama_lembaga='Seluruh Lembaga';
+        }
+        else{
+            $nama_lembaga=DB::table('unit_lembaga')->where('induk_lembaga',$id_lembaga)->get();
+            $nama_lembaga= $nama_lembaga[0]->nama_lembaga;
+        }
+        $nama_file = 'data_santri_'.$nama_lembaga.'_'.date('Y-m-d_H-i-s').'.xlsx';
         return Excel::download(new SantriExport($id_lembaga), $nama_file);
     }
 
@@ -597,6 +641,18 @@ class DataController extends Controller
         return view('get_biaya2',$data);
     }
 
+    public function get_pembayaran($id_santri){
+        $data['madrasah']=DB::table('madrasah')
+        ->join('unit_lembaga','unit_lembaga.induk_lembaga','=','madrasah.id_madrasah')
+        ->where('id_santri',$id_santri)
+        ->get();
+        $data['pondok']=DB::table('pondok')
+        ->join('unit_lembaga','unit_lembaga.induk_lembaga','=','pondok.id_pondok')
+        ->where('id_santri',$id_santri)
+        ->get();
+        return view('get_pembayaran',$data);
+    }
+
     public function update_getbiaya(Request $request){
         $madrasah=$request->biaya_madrasah;
         $pondok=$request->biaya_pondok;
@@ -631,6 +687,7 @@ class DataController extends Controller
         User::create([
             'name' => $request->nama,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password)
         ]);
         return redirect('/data_santri/list_user');
@@ -661,12 +718,14 @@ class DataController extends Controller
             DB::table('users')->where('id',$request->id)->update([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password)
         ]);
     }
     else{
         DB::table('users')->where('id',$request->id)->update([
             'name' => $request->name,
+            'role' => $request->role,
             'email' => $request->email,
         ]);
     }

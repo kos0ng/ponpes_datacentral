@@ -55,6 +55,17 @@
                                                     <input type="password" id="text-input" name="password" placeholder="Password Admin" class="form-control">
                                                 </div>
                                         </div>
+                                         <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Role</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select class="form-control" name="role">
+                                                        <option value="0">Super Admin</option>
+                                                        <option value="1">Admin</option>
+                                                    </select>
+                                                </div>
+                                        </div>
  
                         </div>
                         <div class="modal-footer">

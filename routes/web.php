@@ -27,11 +27,15 @@ Route::get('data_santri/list_absen/{id_lembaga}', 'DataController@list_absen')->
 
 Route::get('data_santri/list_group', 'DataController@list_group')->name('list_group');
 
+Route::get('data_santri/list_all', 'DataController@list_all')->name('list_all');
+
 Route::get('data_santri/list_lembaga', 'DataController@list_lembaga')->name('list_lembaga');
 
 Route::get('data_santri/list_grpabsen', 'DataController@list_grpabsen')->name('list_grpabsen');
 
 Route::get('data_santri/master_biaya', 'DataController@master_biaya')->name('master_biaya');
+
+Route::get('data_santri/rekapitulasi_biaya', 'DataController@rekapitulasi_biaya')->name('rekapitulasi_biaya');
 
 Route::post('data_santri/insert', 'DataController@insert' );
 
@@ -44,6 +48,8 @@ Route::post('data_santri/update', 'DataController@update' );
 Route::post('data_santri/update_absen', 'DataController@update_absen' );
 
 Route::post('data_santri/update_biaya', 'DataController@update_biaya' );
+
+Route::post('data_santri/update_pembayaran', 'DataController@update_pembayaran' );
 
 Route::post('data_santri/update_lembaga', 'DataController@update_lembaga' );
 
@@ -84,6 +90,8 @@ Route::get('data_santri/tambah_biaya2', 'DataController@tambah_biaya2')->name('t
 Route::get('data_santri/get_biaya/{id_santri}', 'DataController@get_biaya')->name('get_biaya');
 
 Route::get('data_santri/get_biaya2/{id_santri}', 'DataController@get_biaya2')->name('get_biaya2');
+
+Route::get('data_santri/get_pembayaran/{id_santri}', 'DataController@get_pembayaran')->name('get_pembayaran');
 
 Route::post('data_santri/update_getbiaya', 'DataController@update_getbiaya')->name('update_getbiaya');
 

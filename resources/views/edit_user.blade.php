@@ -15,6 +15,9 @@
                                          <strong>Edit Data Admin</strong> 
                                     </div>
                                     <div class="card-body card-block">
+                                        @php
+                                        $arr=array('Super Admin','Admin');
+                                        @endphp
                                         @foreach($data as $s)
                                         <form action="/data_santri/update_user" method="post" class="form-horizontal">
                                             {{ csrf_field() }}
@@ -43,6 +46,18 @@
                                                     <input type="password" id="email-input" name="password" class="form-control">
                                                 </div>
                                             </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Role</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select class="form-control" name="role">
+                                                        @for($i=0;$i<2;$i++)
+                                                        <option value="{{ $i }}" {{ ( $s->role == $i) ? 'selected' : '' }}> {{ $arr[$i] }} </option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                        </div>
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-sm">

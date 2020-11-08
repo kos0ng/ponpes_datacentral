@@ -31,11 +31,11 @@
                                         ->orderBy('id_lembaga','DESC')
                                         ->orderBy('kategori','DESC')
                                         ->get();
-                                        $arr=array('Santri Baru','Santri Lama');
+                                        $arr=array('Santri Lama','Santri Baru');
                                                     @endphp
                                                     <select name="biaya_madrasah[]" class="form-control">
                                                     @foreach($data as $row2)
-                                                    <option value="{{$row->id."-".$row2->id_biaya}}">{{ $row2->kategori."- Kelas ".$row2->sub_kategori }}</option>
+                                                    <option value="{{$row->id."-".$row2->id_biaya}}">{{ $row2->kategori." - Kelas ".$row2->sub_kategori }}</option>
                                                     @endforeach
                                                     </select>
                                                     <select name="santri_baru[]" class="form-control" style="margin-top: 2%">
@@ -79,7 +79,7 @@
                                         <button type="reset" class="btn btn-danger btn-sm">
                                             <i class="fa fa-ban"></i> Reset
                                         </button>
-                                        <a href="{{route('list_group')}}"><button type="reset" class="btn btn-success btn-sm">
+                                        <a href="{{route('list_group')}}"><button type="button" class="btn btn-success btn-sm">
                                             <i class="fa fa-ban"></i> Lewati
                                         </button></a>
                                     </div>

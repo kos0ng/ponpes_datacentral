@@ -17,8 +17,6 @@
                             <div class="col-md-12">
                                 <div class="overview-wrap">
                                     <h2 class="title-1">Ringkasan</h2>
-                                    {{-- <button class="au-btn au-btn-icon au-btn--blue">
-                                        <i class="zmdi zmdi-plus"></i>add item</button> --}}
                                 </div>
                             </div>
                         </div>
@@ -98,38 +96,6 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                               {{--  <div class="au-card recent-report">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
-                                        <div class="chart-info">
-                                            <div class="chart-info__left">
-                                                <div class="chart-note">
-                                                    <span class="dot dot--blue"></span>
-                                                    <span>products</span>
-                                                </div>
-                                                <div class="chart-note mr-0">
-                                                    <span class="dot dot--green"></span>
-                                                    <span>services</span>
-                                                </div>
-                                            </div>
-                                            <div class="chart-info__right">
-                                                <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">products</span>
-                                                </div>
-                                                <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">services</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="recent-report__chart">
-                                            <canvas id="recent-rep-chart"></canvas>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                             <div class="col-lg-8">
                                 <div class="au-card chart-percent-card">
@@ -191,10 +157,6 @@
                                         <div class="table-responsive">
                                             <table class="table table-top-countries">
                                                 <tbody>
-                                                    {{-- <tr>
-                                                        <td>Pondok Putra Induk</td>
-                                                        <td class="text-right">14</td>
-                                                    </tr> --}}
                                                     @foreach($pondok as $row)
                                                     @php
                                                     $jumlah=DB::table('pondok')->where(['id_pondok'=>$row->induk_lembaga])->count();
@@ -213,50 +175,6 @@
                                                         <td class="text-right">{{$jumlah}}</td>
                                                     </tr>
                                                     @endforeach
-                                                    {{-- <tr>
-                                                        <td>Pondok Putri Induk</td>
-                                                        <td class="text-right">3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pondok An Nur</td>
-                                                        <td class="text-right">7</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pondok Al Anwar</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pondok As Salam</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pondok Al Fatih</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pondok Al Huda</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Madrasah Diniyah Futuhiyah</td>
-                                                        <td class="text-right">13</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Madrasah Diniyah Quraniyah</td>
-                                                        <td class="text-right">6</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Madrasah Diniyah Almunawaroh</td>
-                                                        <td class="text-right">1</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>Madrasah Ibtidaiyah</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>TK Kusuma Mulia</td>
-                                                        <td class="text-right">0</td>
-                                                    </tr> --}}
                                                 </tbody>
                                             </table>
                                         </div>

@@ -24,6 +24,9 @@ class SantriExport implements FromView
             ->where(['id_madrasah' => $this->id_lembaga])
             ->get();
         }
+        elseif ($this->id_lembaga==0) {
+            $data =  Santri::get();
+        }
         else{
             $data =  Santri::join('pondok','pondok.id_santri','=','data_santri.id_santri')
             ->where(['id_pondok' => $this->id_lembaga])
