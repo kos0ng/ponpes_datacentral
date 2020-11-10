@@ -100,10 +100,10 @@ class DataController extends Controller
     public function insert(Request $request){
         if ($request->hasFile('foto')) {
             //  Let's do everything here
-                $request->validate([
-                    'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                ]); 
-                $imageName = time().'.'.$request->foto->extension();  
+                // $request->validate([
+                //     'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                // ]); 
+                $imageName = time().'.'.$request->foto->getClientOriginalExtension();  
                 $request->foto->move(public_path('images/profile'), $imageName);
         }
         else{
@@ -431,9 +431,9 @@ class DataController extends Controller
         }
     }
     if ($request->hasFile('foto')) {
-            $request->validate([
-                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]); 
+            // $request->validate([
+            //     'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]); 
             $imageName = time().'.'.$request->foto->extension();  
             $request->foto->move(public_path('images/profile'), $imageName);
             DB::table('data_santri')->where('id_santri',$request->id_santri)->update([
@@ -602,9 +602,9 @@ class DataController extends Controller
 
     public function import_excel(Request $request) 
     {
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
+        // $this->validate($request, [
+        //     'file' => 'required|mimes:csv,xls,xlsx'
+        // ]);
  
         $file = $request->file('file');
  

@@ -32,7 +32,7 @@
 
     <!-- Main CSS-->
     <link href="{{ asset('/css/theme.css') }}" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <link rel="stylesheet" href="{{ asset('/css/jquery.dataTables.min.css') }}">
 
 </head>
 @php
@@ -351,7 +351,7 @@ $unit_madrasah=json_encode(DB::table('unit_lembaga')->where('induk_lembaga','lik
     <script src="{{ asset('/vendor/circle-progress/circle-progress.min.js') }}"></script>
     <script src="{{ asset('/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('/vendor/chartjs/Chart.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/vendor/select2/select2.min.js') }}"></script>
 
     <!-- Main JS-->
