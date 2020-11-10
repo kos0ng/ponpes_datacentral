@@ -68,6 +68,11 @@
                                                         Update Kategori
                                                         </button>
                                                     </a>
+                                                    <a href="{{ route('get_pembayaran',['id_santri'=>$row->id_santri]) }}">
+                                                        <button class="btn btn-secondary">
+                                                        Update Pembayaran
+                                                        </button>
+                                                    </a>
                                                 </td>
                                              </tr>  
                                              @endforeach
